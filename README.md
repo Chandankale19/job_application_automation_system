@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Naukri.com Automated Job Application System
 Automates daily job applications on Naukri.com with configurable keywords, location, and schedule.
 
@@ -62,3 +63,7 @@ Mitigation: Uses random delays and limits applications to 50/day.
 License
 MIT License (see LICENSE).
 
+=======
+# job_application_automation_system
+The purpose of this project is to develop an automated system that applies to jobs on Naukri.com daily at a specified time, streamlining the job application process for users while adhering to platform policies and ensuring reliability, scalability, and maintainability.
+>>>>>>> b20df1bbb37e64f2eb03bd661cefa2ef4c215eba
