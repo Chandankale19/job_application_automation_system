@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Logs
+logs/*
+!logs/naukri_auto_apply.log
+
+# IDEs
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage 
+coverage.xml 
+.pytest_cache/
+
+# Docker
+Dockerfile.lock
+
+# Docs
+docs/build/ 
+docs/source/
