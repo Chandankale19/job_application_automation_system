@@ -19,20 +19,33 @@ def config():
 @pytest.fixture(autouse=True)
 def setup_logging():
     """Set up logging for tests."""
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    try:
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S'
+        )
+        logging.info("Logging configured for test_workflow")
+    except Exception as e:
+        print(f"Failed to configure logging: {str(e)}")
+        raise
 
 def test_workflow_success(config):
     """Test end-to-end workflow (mocked)."""
-    with patch('src.scheduler.job_scheduler.load_config', return_value=config), \
-         patch('src.scheduler.job_scheduler.setup_browser') as mock_browser, \
-         patch('src.scheduler.job_scheduler.NaukriAutomation') as mock_naukri:
-        mock_driver = MagicMock()
-        mock_browser().__enter__.return_value = mock_driver
-        mock_naukri.return_value.apply_to_jobs.return_value = 2
-        
-        job_application_task()
-        
-        mock_naukri.return_value.login.assert_called_once()
-        mock_naukri.return_value.apply_to_jobs.assert_called_once()
-        mock_browser().__exit__.assert_called_once()
-        logging.info("test_workflow_success passed")
+    try:
+        with patch('src.scheduler.job_scheduler.load_config', return_value=config), \
+             patch('src.scheduler.job_scheduler.setup_browser') as mock_browser, \
+             patch('src.scheduler.job_scheduler.NaukriAutomation') as mock_naukri:
+            mock_driver = MagicMock()
+            mock_browser().__enter__.return_value = mock_driver
+            mock_naukri.return_value.apply_to_jobs.return_value = 2
+            
+            job_application_task()
+            
+            mock_naukri.return_value.login.assert_called_once()
+            mock_naukri.return_value.apply_to_jobs.assert_called_once()
+            mock_browser().__exit__.assert_called_once()
+            logging.info("test_workflow_success passed")
+    except Exception as e:
+        logging.error(f"Test test_workflow_success failed: {str(e)}")
+        raise

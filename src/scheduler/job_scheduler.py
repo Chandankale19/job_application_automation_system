@@ -1,9 +1,9 @@
 import schedule
 import time
 import logging
-from automation.naukri import NaukriAutomation, NaukriError
-from automation.browser import setup_browser, BrowserError
-from config.settings import load_config, ConfigError
+from src.automation.naukri import NaukriAutomation, NaukriError
+from src.automation.browser import setup_browser, BrowserError
+from src.config.settings import load_config, ConfigError
 
 class SchedulerError(Exception):
     """Custom exception for scheduler errors."""
